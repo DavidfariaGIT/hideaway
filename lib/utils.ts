@@ -1,4 +1,4 @@
-import products from "@/app/data/products.json"
+import products from "@/data/products.json"
 
 
 export function getProductById(id: number) {

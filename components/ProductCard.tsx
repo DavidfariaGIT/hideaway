@@ -1,4 +1,4 @@
-import type { Product } from '../types/products';
+import type { Product } from '@/lib/types';
 import Image from "next/image"
 import Link from 'next/link'
 

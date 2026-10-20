@@ -5,17 +5,19 @@ import HeroImage from '@/public/archivephoto.jpg'
 import gsap from 'gsap'
 import { useGSAP } from "@gsap/react";
 import { useRef } from 'react';
-import HoverCard from './components/HoverCard';
-import ProductCard from './components/ProductCard';
-import products from "@/app/data/products.json";
-import type { Product } from './types/products';
+import HoverCard from '@/components/HoverCard';
+import ProductCard from '@/components/ProductCard';
+import products from "@/data/products.json";
+import type { Product } from '@/lib/types';
 
 
 export default function Home() {
 
-
   const container = useRef(null)
   const productsArray = products
+  const limit = 3
+  let popularProducts = 0
+
 
   useGSAP(() => {
     gsap.to('.hero', { opacity:1, duration: 1})
@@ -32,10 +34,14 @@ export default function Home() {
         </div>
         <p className="text-[1.1rem] mt-10 text-gray-800">Hideaway is an Archive vintage fashion ecommerce site. Buy, sell and find some of the most sought after fashion pieces</p>
         <HoverCard/>
-        <h2 className='text-center mt-30 text-5xl opacity-5 z-0'>POPULAR NOW</h2>
+        <div className='my-10'>
+          <p className='text-center text-4xl bg-linear-to-b bg-clip-text text-transparent from-gray-800 to-gray-200'>Curated collection of some of fashion's most sought after items. Find a piece of fashion history and make it yours</p>
+        </div>
+        <h2 className='text-center mt-20 text-5xl z-0 bg-linear-to-t bg-clip-text text-transparent from-gray-500 to-gray-100'>POPULAR NOW</h2>
         <section className='mt-[-10] flex flex-col gap-5 z-5'>
-          { productsArray.map((p: Product) => {
-            if (p.popular) {
+          {productsArray.map((p: Product) => {
+            if (p.popular && limit > popularProducts) {
+            popularProducts++
              return (
               <ProductCard key={p.id} product={p} >{p.title}</ProductCard>
              )

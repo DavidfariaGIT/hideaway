@@ -1,5 +1,5 @@
 'use client'
-import ShopNav from "../components/ShopNav"
+import ShopNav from "@/components/ShopNav"
 import { useState } from "react"
 
 export default function ShopLayout({children}:{
