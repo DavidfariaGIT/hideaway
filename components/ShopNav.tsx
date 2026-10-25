@@ -1,15 +1,14 @@
-'use client'
-import NavLink from "./Navlink"
+
 import gsap from 'gsap'
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import SortControl from './SortControls';
 
 export default function ShopNav({ isOpen }: {
     isOpen: boolean
 }) {
      
     const container = useRef(null)
-
 
     useGSAP(() => {
         if(isOpen) {
@@ -22,12 +21,8 @@ export default function ShopNav({ isOpen }: {
     return (
         <nav ref={container} className="flex justify-center">
             {isOpen ? 
-            <ul className="flex mt-3">
-                <div className="link-one opacity-0"><NavLink href='/shop/t-shirts'>T shirts</NavLink></div>
-                <div className="link-two opacity-0"><NavLink href='/shop/hoodies'>Hoodies</NavLink></div>
-                <div className="link-three opacity-0"><NavLink href='/shop/pants'>Pants</NavLink></div>
-            </ul> : 
-            null
+            <SortControl/>
+            : null
         }
         </nav>
     )

@@ -42,8 +42,8 @@ export default function Home() {
           {productsArray.map((p: Product) => {
             if (p.popular && limit > popularProducts) {
             popularProducts++
-             return (
-              <ProductCard key={p.id} product={p} >{p.title}</ProductCard>
+             return ( 
+              <ProductCard key={p.id} shop={false} product={p} >{p.title}</ProductCard>
              )
             }
           })

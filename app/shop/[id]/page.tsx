@@ -1,8 +1,21 @@
 import { getProductById } from "@/lib/utils";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
-export default async function ProductPage({
+export default function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  return (
+    <Suspense fallback={<div>loading product...</div>}>
+      <ProductDetails params={params} />
+    </Suspense>
+  );
+}
+
+async function ProductDetails({
   params,
 }: {
   params: Promise<{ id: string }>;

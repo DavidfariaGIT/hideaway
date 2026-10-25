@@ -3,23 +3,22 @@ import Image from "next/image"
 import Link from 'next/link'
 
 
-export default function ProductCard({children, product}: {
+export default function ProductCard({children, product, shop}: {
    children:string, 
-   product: Product
+   product: Product, 
+   shop: boolean
 }) {
-
     const {id, price, image, style} = product
-
 
     return (
         <Link href={`/shop/${id}`}>
         <section className='mb-10'>
-        <div className='bg-gray-100 h-125 rounded-[15px] flex flex-col items-center justify-between py-2'>
+        <div className={`bg-gray-100 ${shop ? 'h-80 px-5' : 'h-125' } rounded-[15px] flex flex-col items-center justify-between py-2`}>
             <p className='text-orange-300 mt-4'>Popular</p>
             <Image 
                 src={image}
                 alt={`image of ${children}`}
-                width={270}
+                width={shop ? 170 : 270}
                 height={200}
                 className='mb-10 rounded-[15px]'
             />
