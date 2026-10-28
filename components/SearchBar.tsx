@@ -17,7 +17,7 @@ export default function SearchBar() {
         name="search"
         placeholder='Search Hidewaway'
         autoComplete='off'
-        className='bg-gray-300/90 text-center w-70 py-3 rounded-[15px] cursor-pointer'
+        className='bg-gray-300/90 text-center w-70 py-3 rounded-[15px] cursor-pointer focus:border-gray-800 active:border-gray-800'
         />
         </Form>
     )

@@ -13,14 +13,13 @@ export default function ProductCard({children, product, shop}: {
     return (
         <Link href={`/shop/${id}`}>
         <section className='mb-10'>
-        <div className={`bg-gray-100 ${shop ? 'h-80 px-5' : 'h-125' } rounded-[15px] flex flex-col items-center justify-between py-2`}>
-            <p className='text-orange-300 mt-4'>Popular</p>
+        <div className={`bg-gray-100 ${shop ? 'h-80 px-5' : 'h-125' } rounded-[15px] flex flex-col items-center justify-center py-2`}>
             <Image 
                 src={image}
                 alt={`image of ${children}`}
                 width={shop ? 170 : 270}
                 height={200}
-                className='mb-10 rounded-[15px]'
+                className='rounded-[15px]'
             />
         </div>
         <div className='text-center'>
