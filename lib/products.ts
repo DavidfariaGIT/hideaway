@@ -1,20 +1,25 @@
 import { getDBConnection } from "./db"
 
-export async function getProducts(sort: string | undefined, filter: string | undefined, search: string | undefined, page: number | undefined, productsPerPage: number | undefined) {
+export async function getProducts(sort: string | undefined, filter: string | null | undefined, search: string | undefined, page: number | undefined, productsPerPage: number | undefined) {
     'use cache'
     const db = await getDBConnection()
 
     let sql = "SELECT * FROM products"
     const placeholder = []
 
-    if (search) {
-        sql += " WHERE title LIKE ? OR description LIKE ?"
-        placeholder.push(`%${search}%`, `%${search}%`)
-    }
+    if (search || sort) {
+        const where = []
 
-    if (sort) {
-        sql += " WHERE title LIKE ?"
-        placeholder.push(`%${sort}%`)
+        if (search) {
+            where.push("(title LIKE ? OR description LIKE ?)")
+            placeholder.push(`%${search}%`, `%${search}%`)
+        }
+        if (sort) {
+            where.push(" title LIKE ?")
+            placeholder.push(`%${sort}%`)
+        }
+
+        sql += " WHERE" + where.join(" AND ")
     }
 
     if (filter) {
@@ -38,24 +43,35 @@ export async function getProducts(sort: string | undefined, filter: string | und
     }
 
     try {
-        console.log(sql)
         return await db.all(sql, placeholder)
     } finally {
         await db.close()
     }
 }
 
-export async function getProductsCount({ search }:{
+export async function getProductsCount({ search, sort }: {
     search: string | undefined
+    sort: string | undefined
 }) {
     const db = await getDBConnection()
 
     let sql = `SELECT COUNT(*) as count FROM products`
     const placeholder = []
 
-    if (search) {
-        sql += " WHERE (title LIKE ? OR description LIKE ?)"
-        placeholder.push(`%${search}%`, `%${search}%`)
+    
+    if (search || sort) {
+        const where = []
+
+        if (search) {
+            where.push("(title LIKE ? OR description LIKE ?)")
+            placeholder.push(`%${search}%`, `%${search}%`)
+        }
+        if (sort) {
+            where.push(" title LIKE ?")
+            placeholder.push(`%${sort}%`)
+        }
+
+        sql += " WHERE" + where.join(" AND ")
     }
 
     try {

@@ -16,7 +16,7 @@ export default function ShopLayout({children}:{
      
     return(
         <main className="relative pb-10">
-            <div className="fixed bottom-15 left-0 right-0">
+            <div className="fixed bottom-15 left-0 right-0 z-10">
             <Suspense fallback={<p>loading search</p>}>
             <SearchBar />
             </Suspense>

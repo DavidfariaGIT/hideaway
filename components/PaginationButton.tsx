@@ -1,8 +1,9 @@
 "use client"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
-export default function PaginationButton({page}:{
-  page:number
+export default function PaginationButton({page, currentPage}:{
+  page:number, 
+  currentPage: boolean
 }) {
 
     const pathname = usePathname()
@@ -16,10 +17,9 @@ export default function PaginationButton({page}:{
       router.push(url)
     }
 
-
   return (
   <button
-  className="bg-gray-200 text-white w-10 h-10 rounded-[15px]"
+  className={`${currentPage ? 'bg-black' : "bg-gray-200"}  text-white w-10 h-10 rounded-[15px] z-0`}
   onClick={handlePageChange}
   >
     {page}

@@ -35,9 +35,9 @@ export default function Home() {
         <p className="text-[1.1rem] mt-10 text-gray-800">Hideaway is an Archive vintage fashion ecommerce site. Buy, sell and find some of the most sought after fashion pieces</p>
         <HoverCard/>
         <div className='my-10'>
-          <p className='text-center text-4xl bg-linear-to-b bg-clip-text text-transparent from-gray-800 to-gray-200'>Curated collection of some of fashion's most sought after items. Find a piece of fashion history and make it yours</p>
+          <p className='text-center text-4xl bg-linear-to-b bg-clip-text text-transparent from-black to-gray-200'>Curated collection of some of fashion's most sought after items. Find a piece of fashion history and make it yours</p>
         </div>
-        <h2 className='text-center mt-20 text-5xl z-0 bg-linear-to-t bg-clip-text text-transparent from-gray-500 to-gray-100'>POPULAR NOW</h2>
+        <h2 className='text-center mt-20 text-5xl z-0 bg-linear-to-t bg-clip-text text-transparent from-black to-gray-100'>POPULAR NOW</h2>
         <section className='mt-[-10] flex flex-col gap-5 z-5'>
           {productsArray.map((p: Product) => {
             if (p.popular && limit > popularProducts) {

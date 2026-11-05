@@ -1,12 +1,13 @@
 "use client"
 
-import Image from "next/image";
-import HideLogo from "@/public/hideaway-logo.png";
-import NavLink from "./Navlink";
-import Link from "next/link";
+import Image from "next/image"
+import HideLogo from "@/public/hideaway-logo.png"
+import NavLink from "./Navlink"
+import Link from "next/link"
+import LoginButton from "./LoginButton"
 import gsap from 'gsap'
-import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useGSAP } from "@gsap/react"
+import { useRef } from "react"
 
 gsap.registerPlugin(useGSAP)
 
@@ -34,6 +35,7 @@ useGSAP(() => {
         <ul className="flex gap-7 ml-auto mr-5">
             <NavLink href='/shop'>Shop</NavLink>
             <NavLink href='/cart'>Cart</NavLink>
+            <LoginButton/>    
         </ul>
       </nav>
     </header>

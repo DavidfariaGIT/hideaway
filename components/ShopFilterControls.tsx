@@ -11,6 +11,7 @@ export default function ShopFilterControls() {
         const url = `${pathname}?filter=${filter}`
         const urlSearchParams = new URLSearchParams(searchParams.toString())
         urlSearchParams.set('filter', filter)
+        urlSearchParams.delete('page')
         router.push(url)
       }
 
