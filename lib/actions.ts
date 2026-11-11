@@ -1,11 +1,13 @@
 'use server'
 
 import { z } from "zod"
-import deleteSession, { createSession } from "./sessions"
+import deleteSession, { createSession, decrypt } from "./sessions"
 import { redirect } from "next/navigation"
 import bcrypt from 'bcryptjs'
 import { getDBConnection } from "./db"
 import { create } from "domain"
+import { cookies } from "next/headers"
+import { randomUUID } from "crypto"
 
 const testUser = {
     id: '1',
@@ -105,4 +107,59 @@ export async function login(preState: any, formData: FormData) {
 export async function logout() {
     await deleteSession()
     redirect('/')
+}
+
+
+//cart
+
+export async function addToCart(productId: string, quantity: number = 1) {
+    const cookieStore = await cookies()
+    const guestCartId = cookieStore.get('cartId')?.value
+    const token = cookieStore.get('session')?.value
+    const session = token ? await decrypt(token) : null
+    const userId = typeof session?.userId === 'string' ? session.userId : undefined
+
+    const db = await getDBConnection()
+    type Cart = { id: string; user_id: string | null }
+
+    let cart: Cart | undefined
+
+    if (userId) {
+        cart = await db.get<Cart>(
+            `SELECT id, user_id FROM carts WHERE user_id = ?`,
+            [userId],
+        )
+
+        if (!cart) {
+            const newId = randomUUID()
+            await db.run(`INSERT INTO carts (id, user_id) VALUES (?, ?)`, [newId, userId])
+            cart = { id: newId, user_id: userId }
+        }
+    } else if (guestCartId) {
+        cart = await db.get<Cart>(
+            `SELECT id, user_id FROM carts WHERE id = ?`,
+            [guestCartId],
+        )
+    }
+
+    if (!cart) {
+        const newId = randomUUID()
+        await db.run('INSERT INTO carts (id, user_id) VALUES (?, NULL)', [newId])
+        cart = { id: newId, user_id: null }
+
+        cookieStore.set('cartId', cart.id, {
+            httpOnly: true,
+            secure: true,
+            maxAge: 60 * 60 * 24 * 5,
+            sameSite: 'lax',
+            path: '/',
+        })
+    }
+
+    await db.run(`
+          INSERT INTO cart_items (cart_id, product_id, quantity) VALUES(?, ?, ?)
+          ON CONFLICT(cart_id, product_id)
+          DO UPDATE SET quantity = quantity + excluded.quantity  
+        `, [cart.id, productId, quantity])
+
 }

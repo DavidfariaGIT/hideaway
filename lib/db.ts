@@ -6,9 +6,13 @@ export async function getDBConnection() {
   
   const dbPath = path.join(process.cwd(), 'hideaway-db') 
   
-  return open({
+  const db = await open({
     filename: dbPath,
     driver: sqlite3.Database
   })
 
+  await db.exec('PRAGMA foreign_keys = ON')
+  await db.exec('PRAGMA journal_mode = WAL')
+
+  return db
 }
