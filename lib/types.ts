@@ -10,3 +10,8 @@ export type Product = {
     year:number
     popular?: boolean | undefined, 
 }
+
+export type SessionPayload = {
+    userId: string,
+    expiresAt: Date
+}

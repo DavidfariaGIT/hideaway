@@ -1,5 +1,5 @@
 import { getDBConnection } from "../db";
-import products from "@/app/data/products.json"
+import products from "@/data/products.json"
 
 async function seedProducts() {
  const db = await getDBConnection()
