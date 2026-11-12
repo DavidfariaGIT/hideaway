@@ -2,6 +2,8 @@ import { getProductById } from "@/lib/utils";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import { addToCart } from "@/lib/actions";
+import Form from "next/form";
 
 export default function ProductPage({
   params,
@@ -31,6 +33,8 @@ async function ProductDetails({
 
   const stock = true;
 
+  const addProductToCart = addToCart.bind(null, id, 1)
+
   return (
     <section className="mt-18 px-10 pb-20">
       <div className="flex flex-col items-center">
@@ -58,9 +62,11 @@ async function ProductDetails({
           </div>
         </div>
         <p className="w-[90%] mt-12 text-gray-600">{description}</p>
-        <button className="mt-12  bg-black text-gray-100 w-[90%] py-2 rounded-[15px]">
+        <Form className="w-full" action={addProductToCart}>
+        <button type="submit" className="mt-12  bg-black text-gray-100 w-[90%] py-2 rounded-[15px] cursor-pointer">
           Add to cart
         </button>
+        </Form>
       </div>
     </section>
   );

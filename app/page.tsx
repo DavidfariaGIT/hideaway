@@ -10,9 +10,7 @@ import ProductCard from '@/components/ProductCard';
 import products from "@/data/products.json";
 import type { Product } from '@/lib/types';
 
-
 export default function Home() {
-
   const container = useRef(null)
   const productsArray = products
   const limit = 3
@@ -24,10 +22,11 @@ export default function Home() {
     gsap.to('.cover', {y:1000, duration: 1.3, onComplete: () => {
     gsap.set('.cover', { display: "none" })
     }})
-  }, {scope: container})
+   }, {scope: container})
+
 
   return (
-    <main ref={container}>
+    <main  ref={container}>
       <section className="hero flex flex-col m-9 mt-20 opacity-0">
         <div className='h-70 overflow-hidden rounded-[10px]'>
         <Image src={HeroImage} alt="fashion collection" width={490}/>
@@ -51,7 +50,6 @@ export default function Home() {
         </section>
          <div className='cover h-screen bg-black absolute top-0 left-0 right-0 bottom-0 z-100'></div>
       </section>
-     
     </main>
   )
 }

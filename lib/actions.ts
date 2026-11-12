@@ -9,12 +9,6 @@ import { create } from "domain"
 import { cookies } from "next/headers"
 import { randomUUID } from "crypto"
 
-const testUser = {
-    id: '1',
-    email: 'testman@test.com',
-    password: 'testman'
-}
-
 const registerSchema = z.object({
     name: z.string().min(3, 'Name must be atleast 3 characters'),
     email: z.string().email({ message: 'Invalid email address' }).trim(),
@@ -111,7 +105,6 @@ export async function logout() {
 
 
 //cart
-
 export async function addToCart(productId: string, quantity: number = 1) {
     const cookieStore = await cookies()
     const guestCartId = cookieStore.get('cartId')?.value

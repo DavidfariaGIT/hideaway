@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import rick from "@/public/rick.jpg";
 import lv from "@/public/lv.jpg";

@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { decrypt } from "@/lib/sessions";
+import { getCartItemCount } from "@/lib/cart";
 import Navbar from "./Navbar";
-
 
 export default async function NavbarServer() {
   const cookieStore = await cookies()
@@ -9,5 +9,8 @@ export default async function NavbarServer() {
   const session = token ? await decrypt(token) : null
 
   const user = session ? {name: session.email} : null
-  return <Navbar user={user}/>
+
+  const cartCount = await getCartItemCount()
+
+  return <Navbar user={user} count={cartCount}/>
 }
