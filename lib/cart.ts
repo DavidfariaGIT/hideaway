@@ -14,7 +14,7 @@ export async function getCartItemCount() {
 
     try {
         let cartId: string | undefined
-
+    
         if(userId) {
             const cart = await db.get('SELECT id FROM carts WHERE user_id = ?', [userId])
             cartId = cart?.id

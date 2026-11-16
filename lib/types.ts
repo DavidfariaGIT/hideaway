@@ -13,5 +13,5 @@ export type Product = {
 
 export type SessionPayload = {
     userId: string,
-    expiresAt: Date
+    expiresAt: Date,
 }

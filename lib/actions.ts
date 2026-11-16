@@ -8,6 +8,7 @@ import { getDBConnection } from "./db"
 import { create } from "domain"
 import { cookies } from "next/headers"
 import { randomUUID } from "crypto"
+import { mergeGuestCart } from "./cart-merge"
 
 const registerSchema = z.object({
     name: z.string().min(3, 'Name must be atleast 3 characters'),
@@ -66,14 +67,6 @@ export async function login(preState: any, formData: FormData) {
 
     const { email, password } = result.data
 
-    if (email !== testUser.email || password !== testUser.password) {
-        return {
-            errors: {
-                email: ["Invaild email or password"],
-            }
-        }
-    }
-
     try {
         const db = await getDBConnection()
 
@@ -89,7 +82,8 @@ export async function login(preState: any, formData: FormData) {
             return { message: 'Invalid credentials' }
         }
 
-        await createSession(user.id)
+        await createSession(String(user.id))
+        await mergeGuestCart(String(user.id))
 
     } catch (error) {
         return { message: 'Database error: failed to register user' }
@@ -110,12 +104,15 @@ export async function addToCart(productId: string, quantity: number = 1) {
     const guestCartId = cookieStore.get('cartId')?.value
     const token = cookieStore.get('session')?.value
     const session = token ? await decrypt(token) : null
-    const userId = typeof session?.userId === 'string' ? session.userId : undefined
+    const userId = typeof session?.userId === 'string' || typeof session?.userId === 'number'
+    ? String(session.userId) : undefined
 
     const db = await getDBConnection()
     type Cart = { id: string; user_id: string | null }
 
     let cart: Cart | undefined
+
+    console.log(userId)
 
     if (userId) {
         cart = await db.get<Cart>(
