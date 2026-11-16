@@ -22,10 +22,6 @@ export async function getProducts(sort: string | undefined, filter: string | nul
         sql += " WHERE" + where.join(" AND ")
     }
 
-    if (filter) {
-        console.log('filer exists')
-    }
-
     if (filter === 'year') {
         sql += ' ORDER BY year DESC'
     }

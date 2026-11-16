@@ -6,7 +6,7 @@ async function deleteRow() {
     try {
         const id = 1
         const select = await db.run(`
-                DELETE FROM users WHERE id = ${id}
+                DELETE FROM carts 
             `)
     } catch (err) {
         console.error('error deleting user', err)
