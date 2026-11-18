@@ -9,6 +9,7 @@ import { create } from "domain"
 import { cookies } from "next/headers"
 import { randomUUID } from "crypto"
 import { mergeGuestCart } from "./cart-merge"
+import { revalidatePath } from "next/cache"
 
 const registerSchema = z.object({
     name: z.string().min(3, 'Name must be atleast 3 characters'),
@@ -152,4 +153,5 @@ export async function addToCart(productId: string, quantity: number = 1) {
           DO UPDATE SET quantity = quantity + excluded.quantity  
         `, [cart.id, productId, quantity])
 
+    revalidatePath("/", "layout")
 }
