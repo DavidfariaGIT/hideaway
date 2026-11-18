@@ -5,7 +5,7 @@ import HeroImage from "@/public/hideaway-logo.png";
 export default function Footer() {
   return (
     <footer>
-      <div className="flex flex-col mt-20">
+      <div className="flex flex-col mt-30">
         <div className="h-25 flex justify-center items-center">
           <Image
             src={HeroImage}

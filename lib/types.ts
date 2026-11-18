@@ -9,9 +9,11 @@ export type Product = {
     sizes: string[]
     year:number
     popular?: boolean | undefined, 
+    quantity?: number
 }
 
 export type SessionPayload = {
     userId: string,
     expiresAt: Date,
 }
+

@@ -12,7 +12,5 @@ export default async function NavbarServer() {
 
   const cartCount = await getCartItemCount()
 
-  console.log(cartCount)
-
   return <Navbar user={user} count={cartCount}/>
 }
