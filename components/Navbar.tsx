@@ -41,7 +41,7 @@ export default function Navbar({user, count}:{
         <ul className="flex gap-7 ml-auto mr-5">
           <NavLink href="/shop">Shop</NavLink>
           <NavLink href="/cart">Cart</NavLink>
-          <div className='w-10 h-10 flex justify-center items-center bg-gray-200 rounded-[15px] text-sm'>{`${count}`}</div>
+          <div className='w-10 h-10 flex justify-center items-center bg-gray-200 rounded-2xl text-sm'>{`${count}`}</div>
           {user ? <LogoutButton/> : <LoginButton /> }
         </ul>
       </nav>
