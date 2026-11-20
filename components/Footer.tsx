@@ -10,8 +10,8 @@ export default function Footer() {
           <Image
             src={HeroImage}
             alt="fashion collection"
-            width={200}
-            className="invert-100 overflow-hidden"
+            width={800}
+            className="invert-100 overflow-hidden max-sm:w-1/2 sm:w-1/3"
           />
         </div>
         <FooterSection links={["Us", "FAQ", "Policy"]}>About</FooterSection>
