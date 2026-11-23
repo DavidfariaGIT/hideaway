@@ -3,6 +3,8 @@ import { Suspense } from "react";
 import { PRODUCTS_PER_PAGE } from "@/lib/constants";
 import { getQueryParams } from "@/lib/utils";
 
+
+
 export default function ShopPage({
   searchParams,
 }: {

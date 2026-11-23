@@ -17,14 +17,14 @@ export default function ProductCard({
     <section className="mb-10">
       <Link href={`/shop/${id}`}>
         <div
-          className={`bg-gray-100 rounded-full flex flex-col items-center justify-center py-2 md:p-5 2xl:px-10`}
+          className={`bg-gray-100 rounded-full flex flex-col items-center justify-center py-2 md:p-5 2xl:px-6 3xl:px-8`}
         >
           <Image
             src={image}
             alt={`image of ${children}`}
             width={770}
             height={900}
-            className="rounded-full 2xl:w-100"
+            className="rounded-full 2xl:w-75 3xl:w-95"
           />
         </div>
         <div className="text-center md:mt-6">
