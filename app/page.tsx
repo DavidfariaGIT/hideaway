@@ -27,16 +27,16 @@ export default function Home() {
 
   return (
     <main ref={container}>
-      <section className="hero flex flex-col md:items-center m-9 mt-20  opacity-0 md:mx-4 2xl:mx-80">
+      <section className="hero flex flex-col md:items-center m-9 mt-20 opacity-0 md:mx-4 2xl:mx-40 3xl:mx-80">
         <div className='h-70 md:h-90 md:w-full 2xl:w-[93%]  2xl:mt-2 overflow-hidden rounded-2xl'>
         <Image src={HeroImage} alt="fashion collection" width={1800}/>
         </div>
-        <div className='2xl:flex 2xl:mt-40 2xl:mr-12'>
-        <p className="text-[1.1rem] xl:text-[1.15rem] lg:text-[1rem] mt-10 text-gray-800 lg:py-20 2xl:w-[55%] 2xl:px-15 2xl:text-[1.4rem] 2xl:mt-20 3xl:mt-[10%] 3xl:w-[40%] 3xl:px-20 3xl:text-[2rem]">Hideaway is an Archive vintage fashion ecommerce site. Buy, sell and find some of the most sought after fashion pieces</p>
+        <div className='2xl:flex 2xl:mt-20 2xl:mr-11 3xl:mr-16'>
+        <p className="text-[1.1rem] lg:text-[2.25rem] xl:text-[1.85rem] 2xl:text-[1.5rem] mt-10 lg:py-20 lg:px-10 2xl:px-18 lg:text-center 2xl:w-[55%] 2xl:mt-30 3xl:mt-[10%] 3xl:w-[50%] 3xl:px-20 3xl:text-[2rem] bg-linear-to-b g-linear-to-t bg-clip-text text-transparent from-black to-white">Hideaway is an Archive vintage fashion ecommerce site. Buy, sell and find some of the most sought after fashion pieces</p>
         <HoverCard/>
         </div>
-        <div className='my-10 xl:mx-27'>
-          <p className='text-center text-4xl bg-linear-to-b bg-clip-text text-transparent from-black to-gray-200 2xl:mt-35 2xl:px-11 3xl:px-0 3xl:w-full'>Curated collection of some of fashion's most sought after items. Find a piece of fashion history and make it yours</p>
+        <div className='my-10 xl:mx-27 2xl:mx-7 3xl:mx-12'>
+          <p className='text-center text-4xl 3xl:text-[3rem] bg-linear-to-b bg-clip-text text-transparent from-black to-gray-200 lg:py-15 lg:px-10 2xl:mt-25 2xl:px-0'>Curated collection of some of fashion's most sought after items. Find a piece of fashion history and make it yours</p>
         </div>
         <h2 className='text-center mt-20 text-5xl lg:text-[3.5rem] z-0 bg-linear-to-t bg-clip-text text-transparent from-black to-gray-100'>POPULAR NOW</h2>
         <section className='mt-[-10] lg:mt-[-11] flex flex-col 2xl:flex-row items-center justify-center gap-5 3xl:gap-25 z-5 md:w-screen 2xl:mb-10'>

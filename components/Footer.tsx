@@ -5,13 +5,13 @@ import HeroImage from "@/public/hideaway-logo.png";
 export default function Footer() {
   return (
     <footer>
-      <div className="flex flex-col mt-30">
+      <div className="flex flex-col mt-30 md:px-10 lg:mb-5">
         <div className="h-25 flex justify-center items-center">
           <Image
             src={HeroImage}
             alt="fashion collection"
             width={800}
-            className="invert-100 overflow-hidden max-sm:w-1/2 sm:w-1/3"
+            className="invert-100 overflow-hidden max-sm:w-1/2 sm:w-1/3 3xl:w-1/4 z-0"
           />
         </div>
         <FooterSection links={["Us", "FAQ", "Policy"]}>About</FooterSection>

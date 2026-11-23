@@ -22,7 +22,7 @@ export default function HoverCard() {
           <li onMouseEnter={() => setBrand("lv")} onMouseLeave={() => setBrand("rick")} className="px-4 text-white lg:text-[1.5rem] 2xl:text-[1rem] hover:text-white/40 cursor-default">LV</li>
         </div>
         </ul>
-      <Image src={images[brand]} width={1090} alt={`image of hovered ${brand}`} className="rounded-2xl"/>
+      <Image src={images[brand]} width={1500} alt={`image of hovered ${brand}`} className="rounded-2xl"/>
     </div>
   );
 }

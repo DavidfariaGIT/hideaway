@@ -4,15 +4,15 @@ import ProductCard from "./ProductCard"
 export default function ProductsGrid({products, search}:{products:Product[], search:string | undefined}) {
 
 const productsData = products
-let title = 'Products page'
+let title = 'Products'
 if(search) {
   title = `search results for ${search}`
 } 
 
 
   return (
-    <main className="mt-20">
-      <h1 className="text-center text-[1rem] py-7 pr-12">{title}</h1>
+    <main className="w-screen mt-20 3xl:my-25">
+      <h1 className="text-center text-[1rem] py-7 3xl:pb-25">{title}</h1>
       <div className="flex flex-wrap justify-center gap-4 pl-2">
      {
       productsData.map((p) => {

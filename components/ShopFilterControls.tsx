@@ -17,7 +17,7 @@ export default function ShopFilterControls() {
 
       
     return (
-         <aside className="mt-19 ml-1">
+         <aside className="mt-19 ml-1 absolute left-0 top-0">
                 <div className="flex flex-col gap-8 pl-2 items-center" >
                     <button 
                     className={`cursor-pointer text-sm ${isActive === "year" ? 'text-gray-300' : " "}`}

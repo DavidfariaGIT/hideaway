@@ -1,10 +1,9 @@
 'use client'
 import ShopNav from "@/components/ShopNav"
 import { Suspense, useState } from "react"
-import SearchBar from "@/components/SearchBar";
-import ShopFilterControls from "@/components/ShopFilterControls";
-
-
+import SearchBar from "@/components/SearchBar"
+import ShopFilterControls from "@/components/ShopFilterControls"
+import { usePathname } from "next/navigation"
 
 export default function ShopLayout({children}:{
     children: React.ReactNode
@@ -13,7 +12,11 @@ export default function ShopLayout({children}:{
     const openNav = () => {
         setIsOpen(prevOpen => !prevOpen)
     }
-     
+
+    const pathname = usePathname()
+    const lastPathSegment = pathname.split('/').pop() ?? ''
+    const isProductDetailPage = /^\d+$/.test(lastPathSegment)
+
     return(
         <main className="relative pb-10">
             <div className="fixed bottom-15 left-0 right-0 z-10">
@@ -25,11 +28,11 @@ export default function ShopLayout({children}:{
             onClick={openNav}
             className="m-auto block mt-20 bg-gray-200 text-gray-500 py-2 px-4 rounded-full cursor-pointer"
             >Find what you're looking for</button>
-            <ShopNav isOpen={isOpen} />
+            {!isProductDetailPage && <ShopNav isOpen={isOpen} />}
             <div className="grid grid-cols-[auto_auto] col-auto">
             <div>
-             <Suspense fallback={<p>loading filter controls..</p>}>
-                <ShopFilterControls/>
+            <Suspense fallback={<p>loading filter controls..</p>}>
+             {!isProductDetailPage && <ShopFilterControls/>}
             </Suspense>
             </div>
             {children}
