@@ -17,7 +17,7 @@ if(search) {
      {
       productsData.map((p) => {
         return (
-          <ProductCard shop={true} key={p.id} product={p}>{p.title}</ProductCard>
+          <ProductCard key={p.id} product={p}>{p.title}</ProductCard>
         )
       })
      }

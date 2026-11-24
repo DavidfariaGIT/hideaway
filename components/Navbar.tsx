@@ -10,15 +10,18 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 
-export default function Navbar({user, count}:{
-    user: {name: unknown} | null,
-    count: number
+export default function Navbar({
+  user,
+  count,
+}: {
+  user: { name: unknown } | null;
+  count: number;
 }) {
   const container = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
-      gsap.to(".nav", { duration: 1.8, opacity: 1 });
+      gsap.to(".nav", { duration: 2.5, opacity: 1 });
     },
     { scope: container },
   );
@@ -41,9 +44,13 @@ export default function Navbar({user, count}:{
         <ul className="flex gap-7 ml-auto mr-5">
           <NavLink href="/shop">Shop</NavLink>
           <NavLink href="/cart">Cart</NavLink>
-          <div className='w-10 h-10 flex justify-center items-center bg-gray-200 rounded-2xl text-sm'>{`${count}`}</div>
-          {user ? <LogoutButton/> : <LoginButton /> }
+          {user ? <LogoutButton /> : <LoginButton />}
         </ul>
+        <Link href={'/cart'}>
+          <div className="fixed bottom-12 right-10 flex justify-center items-center bg-black/35 backdrop-blur-xl backdrop-saturate-180 border border-gray-100/25 shadow-[0_8px_32px_0_rgba(0,0,0,0.15)] rounded-2xl w-30 text-sm text-white py-4 z-50">
+            {count > 0 ? `Cart: ${count}` : "empty cart"}
+          </div>
+        </Link>
       </nav>
     </header>
   );
