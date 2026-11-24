@@ -4,12 +4,10 @@ import Link from "next/link";
 
 export default function ProductCard({
   children,
-  product,
-  shop,
+  product
 }: {
-  children: string;
-  product: Product;
-  shop: boolean;
+  children: string
+  product: Product
 }) {
   const { id, price, image, style } = product;
 

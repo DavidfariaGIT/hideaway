@@ -17,11 +17,7 @@ export default function ProductPage({
   );
 }
 
-async function ProductDetails({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+async function ProductDetails({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const product = getProductById(Number(id));
 
@@ -33,21 +29,24 @@ async function ProductDetails({
 
   const stock = true;
 
-  const addProductToCart = addToCart.bind(null, id, 1)
+  const addProductToCart = addToCart.bind(null, id, 1);
 
   return (
-    <section className="mt-18 px-10 pb-20">
-      <div className="flex flex-col items-center">
+    <section className="mt-12 lg:mt-30 lg:px-10 xl:px-20 2xl:px-30 pb-20 w-screen">
+      <div className="flex flex-col lg:flex-row items-start 2xl:mr-45">
+        <div className="flex justify-center w-screen">
         <Image
           src={image}
           alt={`enlarged ${title}`}
-          width={420}
+          width={1200}
           height={400}
-          className="rounded-[15px]"
+          className="rounded-[15px] w-90 md:w-100 lg:w-110 xl:w-120 2xl:w-[60%]"
         />
-        <div className="flex items-center justify-between w-[90%]">
+        </div>
+        <div className="mt-20 xl:mt-30 2xl:mt-20">
+        <div className="flex justify-between w-full px-5 md:px-15">
           <div>
-            <p className="mt-10 text-xl text-gray-600">{title}</p>
+            <p className="mt-10 text-xl xl:text-2xl 2xl:text-3xl text-gray-600">{title}</p>
             <div className="flex items-center">
               <p className="mt-8 bg-gray-200 text-gray-600 text-sm inline-block py-1 px-2 rounded-[15px]">
                 {style}
@@ -61,13 +60,19 @@ async function ProductDetails({
             <p className="ml-auto mt-25 font-medium">${price}</p>
           </div>
         </div>
-        <p className="w-[90%] mt-12 text-gray-600">{description}</p>
-        <Form className="w-full" action={addProductToCart}>
-        <button type="submit" className="mt-12  bg-black text-gray-100 w-[90%] py-2 rounded-[15px] cursor-pointer">
-          Add to cart
-        </button>
-        </Form>
-      </div>
+        <div className="px-5 md:px-15">
+          <p className="mt-12 text-gray-600 2xl:text-[1.5rem]">{description}</p>
+          <Form className="w-full" action={addProductToCart}>
+            <button
+              type="submit"
+              className="mt-12 bg-black text-gray-100 w-full py-2 rounded-[15px] cursor-pointer"
+            >
+              Add to cart
+            </button>
+          </Form>
+        </div>
+        </div>
+        </div>
     </section>
   );
 }
