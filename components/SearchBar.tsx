@@ -10,14 +10,14 @@ export default function SearchBar() {
     return(
         <Form 
         action='/shop'
-        className={` ${params.id ? 'hidden' : null} w-full flex justify-center`}>
+        className={` ${params.id ? 'hidden' : null} flex justify-center pointer-events-none`}>
         <input
         type="text"
         id="search"
         name="search"
         placeholder='Search Hidewaway'
         autoComplete='off'
-        className='bg-gray-300/90 text-center w-70 py-3 rounded-[15px] cursor-pointer focus:border-gray-800 active:border-gray-800'
+        className='bg-gray-300/90 text-center w-70 py-3 rounded-[15px] cursor-pointer focus:border-gray-800 active:border-gray-800 pointer-events-auto'
         />
         </Form>
     )
