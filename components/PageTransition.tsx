@@ -61,7 +61,7 @@ export default function PageTransition({ children }: { children: ReactNode }) {
       timeline.to(overlay.current, {
         scaleY: 0,
         opacity: 0,
-        duration: 0.4,
+        duration: 0.3,
         ease: "power2.inOut",
         transformOrigin: "top",
       });
@@ -73,11 +73,11 @@ export default function PageTransition({ children }: { children: ReactNode }) {
       revealPage();
     }
 
-    const handleClick = (event: MouseEvent) => {
-      const link = event.currentTarget;
+    const handleClick = (e: MouseEvent) => {
+      const link = e.currentTarget;
       if (!(link instanceof HTMLAnchorElement)) return;
 
-      event.preventDefault();
+      e.preventDefault();
       const url = new URL(link.href).pathname;
       if (url !== pathname && !isTransitioning.current) {
         isTransitioning.current = true;
@@ -98,7 +98,7 @@ export default function PageTransition({ children }: { children: ReactNode }) {
       <div ref={container}>
         <div
           ref={overlay}
-          className="fixed inset-0 z-[100] origin-top bg-black"
+          className="fixed inset-0 z-100 origin-top bg-gray-200"
         />
       </div>
       {children}

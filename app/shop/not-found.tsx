@@ -6,8 +6,8 @@ export default function ProductsNotFound() {
       <NotFoundUI
       title="products not found"
       subtitle="no results found"
-      linkText="back to products"
-      link="/shop"
+      linkText="go back home"
+      link="/"
       />
     </div>
   )

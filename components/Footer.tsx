@@ -11,12 +11,12 @@ export default function Footer() {
             src={HeroImage}
             alt="fashion collection"
             width={800}
-            className="invert-100 overflow-hidden max-sm:w-1/2 sm:w-1/3 3xl:w-1/4 z-0"
+            className="invert-100 overflow-hidden max-sm:w-1/2 sm:w-1/3 3xl:w-1/4 z-0 pointer-events-none"
           />
         </div>
-        <FooterSection links={["Us", "FAQ", "Policy"]}>About</FooterSection>
-        <FooterSection links={["Archive", "Editorial"]}>Articles</FooterSection>
-        <FooterSection links={["Instagram", "Email", "Phone"]}>
+        <FooterSection path={'about'} links={["Us", "FAQ", "Policy"]}>About</FooterSection>
+        <FooterSection path={'articles'} links={["Archive", "Editorial"]}>Articles</FooterSection>
+        <FooterSection path={'contact'} links={["Instagram", "Email", "Phone"]}>
           Contact
         </FooterSection>
       </div>
